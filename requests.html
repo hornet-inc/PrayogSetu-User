@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>My Requests - PrayogSetu</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Firebase App (core SDK) -->
+<!-- Firebase compat libraries (works with your existing compat code) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/PapaParse/5.4.1/papaparse.min.js"></script>
+
+
+
+    <link rel="stylesheet" href="css/user.css" />
+    <link rel="stylesheet" href="css/requests.css" />
+    <script defer src="js/firebase-core.js"></script>
+    <script defer src="js/requests.js"></script>
+</head>
+
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-prism">
+                        <div class="prism-shape"></div>
+                    </div>
+                </div>
+                <span class="logo-text">
+                    <span class="prism">PrayogSetu</span>
+                    <span class="flux">Innovation Lab</span>
+                </span>
+            </a>
+
+        <!-- NAVIGATION -->
+        <nav class="sidebar-nav">
+
+            <!-- Overview stays on this page -->
+            <a href="user.html" class="nav-item">
+                <span class="icon">🏠</span>
+                Dashboard
+            </a>
+
+            <a class="nav-item" href="components.html">
+                <span class="icon">🧩</span> Components
+            </a>
+
+            <a class="nav-item" href="projects.html">
+                <span class="icon">📁</span> Projects
+            </a>
+
+            <a class="nav-item" href="blogs.html">
+                <span class="icon">📝</span> Blogs
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="icon">📅</span> Events
+            </a>
+
+            <a class="nav-item active" href="requests.html">
+                <span class="icon">📨</span> My Requests
+            </a>
+
+            <a class="nav-item" href="clubs.html">
+                <span class="icon">🎯</span> Clubs
+            </a>
+
+        </nav>
+
+        <!-- ===== USER INFO CARD AT BOTTOM ===== -->
+        <div class="sidebar-footer">
+            <div class="user-info-card">
+                <p class="logged-in-text">Logged in as</p>
+                <h3 id="userName">User</h3>
+
+                <!-- Email hidden (since includes roll number) -->
+                <!-- <p id="userEmail"></p> -->
+
+                <button class="logout-btn" onclick="logoutUser()">Logout</button>
+            </div>
+        </div>
+
+    </aside>
+
+<!-- ===== MAIN CONTENT (Requests) ===== -->
+<main class="main-content">
+
+  <section id="requests" class="section active-section" aria-labelledby="requestsTitle">
+    <h1 id="requestsTitle" class="section-title">My Requests</h1>
+    <p class="section-subtitle">Request components, track approvals, deliveries and returns.</p>
+
+    <!-- ===== NEW REQUEST (glass card) ===== -->
+    <div class="request-glass-card" role="region" aria-labelledby="newRequestHeading">
+      <h2 id="newRequestHeading" class="card-heading">New Component Request</h2>
+
+      <div class="new-request-row" style="align-items:center;">
+        <label for="productIdInput" class="sr-only">Product ID</label>
+        <input id="productIdInput" class="input" type="text" placeholder="Enter Component ID (e.g. 1521)" />
+
+        <!-- Quantity added as requested -->
+        <label for="productQtyInput" class="sr-only">Quantity</label>
+        <input id="productQtyInput" class="input" type="number" min="1" placeholder="Qty" style="width:110px;" />
+
+        <button id="fetchProductBtn" class="btn">Lookup</button>
+      </div>
+
+      <p class="hint">Enter a component ID and quantity then click Lookup to search and request for the component</p>
+
+    </div>
+
+    <!-- ===== OVERLAY / MODAL: Product details & submit ===== -->
+    <div id="productModal" class="overlay" aria-hidden="true" style="display:none;">
+      <div class="overlay-panel" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+        <button id="modalClose" class="overlay-close" aria-label="Close">✕</button>
+
+        <h3 id="modalTitle">Component details</h3>
+
+        <div class="product-details" aria-live="polite">
+          <p><strong>ID:</strong> <span id="modalProductId">—</span></p>
+          <p><strong>Name:</strong> <span id="modalProductName">—</span></p>
+          <p><strong>Requested Qty:</strong> <span id="modalReqQty">—</span></p>
+          <p><strong>Total Qty:</strong> <span id="modalTotalQty">—</span></p>
+          <p><strong>Available:</strong> <span id="modalAvailQty">—</span></p>
+          <p><strong>Description:</strong> <span id="modalDesc">—</span></p>
+          <p><strong>Request Type:</strong> <span id="modalReqType">—</span></p>
+          <p><strong>Write Preview:</strong> <code id="modalWritePreview">—</code></p>
+        </div>
+
+        <!-- shown only when request type is Special -->
+        <div id="specialBlock" style="display:none;">
+          <label for="specialConcern">Explain your special request (required)</label>
+          <textarea id="specialConcern" rows="4" placeholder="Describe why this needs special approval"></textarea>
+        </div>
+
+        <div class="overlay-actions">
+          <button id="submitRequestBtn" class="btn primary">Submit Request</button>
+          <button id="cancelRequestBtn" class="btn">Cancel</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== STATUS PANELS (colour coded) ===== -->
+    <div class="status-panels" role="region" aria-label="Request status panels">
+
+      <div class="status-panel status-raised" aria-labelledby="raisedHeading">
+        <h4 id="raisedHeading">Raised</h4>
+        <p class="panel-note">Open Requested Items:</p>
+        <div id="listRaised" class="status-list" aria-live="polite">
+          <!-- JS will append items here using a structure like:
+               <div class="item" data-key="TIMESTAMP">
+                 <div class="item-left">
+                   <strong class="item-id">1521</strong>
+                   <div class="item-meta">Name · Req: 2 · Avail: 30</div>
+                 </div>
+                 <div class="item-right">
+                   <button class="btn small btn-delete">Delete</button>
+                 </div>
+               </div>
+          -->
+        </div>
+      </div>
+
+      <div class="status-panel status-approved" aria-labelledby="approvedHeading">
+        <h4 id="approvedHeading">Approved</h4>
+        <p class="panel-note">Approved Items ready to collect:</p>
+        <div id="listApproved" class="status-list" aria-live="polite">
+          <!-- read-only entries -->
+        </div>
+      </div>
+
+      <div class="status-panel status-delivered" aria-labelledby="deliveredHeading">
+        <h4 id="deliveredHeading">Delivered / Sanctioned</h4>
+        <p class="panel-note">Delivered Items:</p>
+        <div id="listDelivered" class="status-list" aria-live="polite"></div>
+      </div>
+
+      <div class="status-panel status-rejected" aria-labelledby="rejectedHeading">
+        <h4 id="rejectedHeading">Rejected</h4>
+        <p class="panel-note">Rejected request items:</p>
+        <div id="listRejected" class="status-list" aria-live="polite"></div>
+      </div>
+
+      <div class="status-panel status-returned" aria-labelledby="returnedHeading">
+        <h4 id="returnedHeading">Returned</h4>
+        <p class="panel-note">Successfully returned items:</p>
+        <div id="listReturned" class="status-list" aria-live="polite"></div>
+      </div>
+
+    </div>
+
+    <!-- ===== 3D Printing + Mentor Support QUICK FORMS (compact) ===== -->
+    <div class="aux-forms" style="margin-top:28px;">
+
+      <!-- 3D Print card — kept UI intact, added Print Name -->
+      <div class="glass-card print-card" role="region" aria-labelledby="printHeading">
+        <h4 id="printHeading">3D Print Request</h4>
+
+        <label for="printNameInput" class="sr-only">Print Name</label>
+        <input id="printNameInput" class="input" type="text" placeholder="Set a unique name for your 3D Print Job" />
+
+        <label for="printDriveLink" class="sr-only">Drive Link</label>
+        <input id="printDriveLink" class="input" type="url" placeholder="Paste only Google Drive link to STL/ZIP" />
+
+        <label for="printMaterial" class="sr-only">Filament</label>
+        <select id="printMaterial" class="input">
+          <option value="PLA">PLA</option>
+          <option value="ABS">ABS</option>
+          <option value="PETG">PETG</option>
+        </select>
+
+        <div style="display:flex; gap:8px; margin-top:8px;">
+          <button id="submitPrintBtn" class="btn primary">Submit Print Job</button>
+        </div>
+       </div>
+
+      <!-- Mentor Support — redesigned as chat UI -->
+      <div class="glass-card mentor-card" role="region" aria-labelledby="mentorHeading" style="display:flex; flex-direction:column;">
+        <h4 id="mentorHeading">Mentor Support</h4>
+
+<div id="mentorChatWindow" class="mentor-chat-window">
+  <!-- Messages will be appended here -->
+  <div class="empty-chat-note" style="text-align:center; color:#666; padding:40px 0;">
+    No messages yet — ask your mentor.
+  </div>
+</div>
+
+        <form id="mentorForm" class="mentor-form" style="display:flex; gap:8px; align-items:flex-end;">
+          <textarea id="mentorQuestion" rows="2" class="input" placeholder="Describe your problem / request for mentorship"></textarea>
+          <div style="display:flex; flex-direction:column; gap:6px;">
+            <button id="submitMentorBtn" class="btn primary" type="button">Send</button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<!-- Success Modal -->
+<div id="successModal" class="modal-overlay">
+  <div class="modal-content">
+    <p id="successMessage">Request submitted successfully!</p>
+    <button id="successOkBtn">OK</button>
+  </div>
+</div>
+
+
+
+</body>
+</html>

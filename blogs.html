@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Blogs - PrayogSetu</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+    <!-- Firebase App (core SDK) -->
+<!-- Firebase compat libraries (works with your existing compat code) -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+
+    <link rel="stylesheet" href="css/user.css" />
+    <link rel="stylesheet" href="css/blogs.css" />
+    <script defer src="js/firebase-core.js"></script>
+    <script defer src="js/blogs.js"></script>
+</head>
+
+<body>
+
+     <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-prism">
+                        <div class="prism-shape"></div>
+                    </div>
+                </div>
+                <span class="logo-text">
+                    <span class="prism">PrayogSetu</span>
+                    <span class="flux">Innovation Lab</span>
+                </span>
+            </a>
+
+        <!-- NAVIGATION -->
+        <nav class="sidebar-nav">
+
+            <!-- Overview stays on this page -->
+            <a href="user.html" class="nav-item">
+                <span class="icon">🏠</span>
+                Dashboard
+            </a>
+
+            <a class="nav-item" href="components.html">
+                <span class="icon">🧩</span> Components
+            </a>
+
+            <a class="nav-item" href="projects.html">
+                <span class="icon">📁</span> Projects
+            </a>
+
+            <a class="nav-item active" href="blogs.html">
+                <span class="icon">📝</span> Blogs
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="icon">📅</span> Events
+            </a>
+
+            <a class="nav-item" href="requests.html">
+                <span class="icon">📨</span> My Requests
+            </a>
+
+            <a class="nav-item" href="clubs.html">
+                <span class="icon">🎯</span> Clubs
+            </a>
+
+        </nav>
+
+        <!-- ===== USER INFO CARD AT BOTTOM ===== -->
+        <div class="sidebar-footer">
+            <div class="user-info-card">
+                <p class="logged-in-text">Logged in as</p>
+                <h3 id="userName">User</h3>
+
+                <!-- Email hidden (since includes roll number) -->
+                <!-- <p id="userEmail"></p> -->
+
+                <button class="logout-btn" onclick="logoutUser()">Logout</button>
+            </div>
+        </div>
+
+    </aside>
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+        <section id="blogs" class="section active-section">
+            <h1 class="section-title">Blogs & Articles</h1>
+            <p class="section-subtitle">Explore stories, tutorials, experiments, and lab write-ups.</p>
+
+            <!-- ===== BLOG LIST ===== -->
+            <div class="blogs-list">
+                <div class="blog-card">
+                    <h3 class="blog-title">Building a Smart Garden with ESP32</h3>
+                    <p class="blog-desc">Learn how to create an automated garden system that monitors soil moisture, temperature, and sunlight using ESP32 sensors.</p>
+                    <a href="#" class="blog-btn">Read More</a>
+                </div>
+
+                <div class="blog-card">
+                    <h3 class="blog-title">Gesture Controlled Robot</h3>
+                    <p class="blog-desc">Step-by-step guide on building a robot that responds to hand gestures using MPU6050 sensor and Arduino.</p>
+                    <a href="#" class="blog-btn">Read More</a>
+                </div>
+
+                <div class="blog-card">
+                    <h3 class="blog-title">Home Automation using Bluetooth</h3>
+                    <p class="blog-desc">Control lights and appliances remotely via a mobile app and HC-05 Bluetooth module.</p>
+                    <a href="#" class="blog-btn">Read More</a>
+                </div>
+
+                <div class="blog-card">
+                    <h3 class="blog-title">AI Face Detection Door Lock</h3>
+                    <p class="blog-desc">Implement face recognition-based door security system with Raspberry Pi and OpenCV.</p>
+                    <a href="#" class="blog-btn">Read More</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+</body>
+</html>

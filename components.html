@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Components – PrayogSetu</title>
+    <link rel="stylesheet" href="css/user.css" />
+    <link rel="stylesheet" href="css/components.css" />
+    <!-- Firebase App -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx/dist/xlsx.full.min.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="js/firebase-core.js"></script>
+</head>
+
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-prism">
+                        <div class="prism-shape"></div>
+                    </div>
+                </div>
+                <span class="logo-text">
+                    <span class="prism">PrayogSetu</span>
+                    <span class="flux">Innovation Lab</span>
+                </span>
+            </a>
+
+        <!-- NAVIGATION -->
+        <nav class="sidebar-nav">
+
+            <!-- Overview stays on this page -->
+            <a href="user.html" class="nav-item">
+                <span class="icon">🏠</span>
+                Dashboard
+            </a>
+
+            <a class="nav-item active" href="components.html">
+                <span class="icon">🧩</span> Components
+            </a>
+
+            <a class="nav-item" href="projects.html">
+                <span class="icon">📁</span> Projects
+            </a>
+
+            <a class="nav-item" href="blogs.html">
+                <span class="icon">📝</span> Blogs
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="icon">📅</span> Events
+            </a>
+
+            <a class="nav-item" href="requests.html">
+                <span class="icon">📨</span> My Requests
+            </a>
+
+            <a class="nav-item" href="clubs.html">
+                <span class="icon">🎯</span> Clubs
+            </a>
+
+        </nav>
+
+        <!-- ===== USER INFO CARD AT BOTTOM ===== -->
+        <div class="sidebar-footer">
+            <div class="user-info-card">
+                <p class="logged-in-text">Logged in as</p>
+                <h3 id="userName">User</h3>
+
+                <!-- Email hidden (since includes roll number) -->
+                <!-- <p id="userEmail"></p> -->
+
+                <button class="logout-btn" onclick="logoutUser()">Logout</button>
+            </div>
+        </div>
+
+    </aside>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="main-content">
+
+    <h1 class="section-title">Components Inventory</h1>
+    <p class="section-subtitle">
+        Browse, search and request electronic components available in Innovation Lab via PrayogSetu Lab Portal.
+    </p>
+
+    <!-- Search box -->
+    <input type="text" class="search-box" placeholder="Search components...">
+
+    <!-- Refresh button -->
+    <div style="margin: 12px 0;">
+        <button id="refreshBtn" class="btn primary">🔄 Refresh Inventory</button>
+    </div>
+
+    <!-- ===== COMPONENTS TABLE ===== -->
+    <div class="components-table-container">
+        <table class="components-table">
+            <thead>
+                <tr>
+                    <th>Sl No</th>
+                    <th>Component ID</th>
+                    <th>Component Name</th>
+                    <th>Total Quantity</th>
+                    <th>Quantity Available</th>
+                    <th>Description</th>
+                    <th>Request Type</th>
+                </tr>
+            </thead>
+            <tbody id="componentsTableBody">
+                <!-- JS will dynamically insert rows here -->
+            </tbody>
+        </table>
+    </div>
+
+</main>
+    <script defer src="js/components.js"></script>
+</body>
+</html>

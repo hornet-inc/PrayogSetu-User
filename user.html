@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>User Dashboard - PrayogSetu</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="/css/user.css" />
+
+    <!-- JS -->
+    <script defer src="/js/user.js"></script>
+</head>
+
+<body>
+
+    <!-- ===== SIDEBAR ===== -->
+    <aside class="sidebar">
+            <a href="#home" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-prism">
+                        <div class="prism-shape"></div>
+                    </div>
+                </div>
+                <span class="logo-text">
+                    <span class="prism">PrayogSetu</span>
+                    <span class="flux">Innovation Lab</span>
+                </span>
+            </a>
+
+        <!-- NAVIGATION -->
+        <nav class="sidebar-nav">
+
+            <!-- Overview stays on this page -->
+            <a href="user.html" class="nav-item active">
+                <span class="icon">🏠</span>
+                Dashboard
+            </a>
+
+            <a class="nav-item" href="components.html">
+                <span class="icon">🧩</span> Components
+            </a>
+
+            <a class="nav-item" href="projects.html">
+                <span class="icon">📁</span> Projects
+            </a>
+
+            <a class="nav-item" href="blogs.html">
+                <span class="icon">📝</span> Blogs
+            </a>
+
+            <a class="nav-item" href="events.html">
+                <span class="icon">📅</span> Events
+            </a>
+
+            <a class="nav-item" href="requests.html">
+                <span class="icon">📨</span> My Requests
+            </a>
+
+            <a class="nav-item" href="clubs.html">
+                <span class="icon">🎯</span> Clubs
+            </a>
+
+        </nav>
+
+        <!-- ===== USER INFO CARD AT BOTTOM ===== -->
+        <div class="sidebar-footer">
+            <div class="user-info-card">
+                <p class="logged-in-text">Logged in as</p>
+                <h3 id="userName">User</h3>
+
+                <!-- Email hidden (since includes roll number) -->
+                <!-- <p id="userEmail"></p> -->
+
+                <button class="logout-btn" onclick="logoutUser()">Logout</button>
+            </div>
+        </div>
+
+    </aside>
+
+
+
+    <!-- ===== MAIN CONTENT ===== -->
+    <main class="main-content">
+
+        <!-- OVERVIEW SECTION ONLY -->
+        <section id="overview" class="section active-section">
+            <h1 class="section-title">Welcome to PrayogSetu Innovation Lab Portal</h1>
+            <p class="section-subtitle">
+                Your gateway to components, projects, events, blogs, and hands-on learning.
+            </p>
+
+<div class="card-grid">
+
+<div class="dashboard-card">
+    <h3 class="card-title">Borrow Components</h3>
+
+    <div class="card-carousel">
+        <div class="carousel-item">
+            <span class="card-tag">New Arrival</span>
+            <img src="assets/components1.jpg" alt="Component 1">
+            <p class="image-name">STM32 BlackBoard</p>
+        </div>
+        <div class="carousel-item">
+            <span class="card-tag">New Arrival</span>
+            <img src="assets/components2.jpg" alt="Component 2">
+            <p class="image-name">STM32 Nucleo</p>
+        </div>
+        <div class="carousel-item">
+            <span class="card-tag">New Arrival</span>
+            <img src="assets/components3.jpg" alt="Component 3">
+            <p class="image-name">LattePanda Dev Kit</p>
+        </div>
+        <div class="carousel-item">
+            <span class="card-tag">New Arrival</span>
+            <img src="assets/components4.jpg" alt="Component 4">
+            <p class="image-name">DJI 2827kv BLDC</p>
+        </div>
+        <div class="carousel-item">
+            <span class="card-tag">New Arrival</span>
+            <img src="assets/components5.jpg" alt="Component 5">
+            <p class="image-name">Voice Module</p>
+        </div>
+        <div class="carousel-item">
+            <span class="card-tag">New Arrival</span>
+            <img src="assets/components6.jpg" alt="Component 6">
+            <p class="image-name">Speakers</p>
+        </div>
+        <div class="carousel-item">
+            <span class="card-tag">New Arrival</span>
+            <img src="assets/components7.jpg" alt="Component 7">
+            <p class="image-name">NRF24L01+ PA+ LNA</p>
+        </div>
+    </div>
+
+    <a href="components.html">
+        <button class="primary-btn card-btn">View Components</button>
+    </a>
+</div>
+
+
+    <div class="dashboard-card">
+        <h3 class="card-title">Projects</h3>
+
+        <div class="card-carousel">
+            <img src="assets/projects1.jpg" alt="Project 1">
+            <img src="assets/projects2.jpg" alt="Project 2">
+            <img src="assets/projects3.jpg" alt="Project 3">
+            <img src="assets/projects4.jpg" alt="Project 4">
+            <img src="assets/projects5.jpg" alt="Project 5">
+            <img src="assets/projects6.jpg" alt="Project 6">
+        </div>
+
+        <a href="projects.html">
+            <button class="primary-btn card-btn">View Projects</button>
+        </a>
+    </div>
+
+    <div class="dashboard-card">
+        <h3 class="card-title">Blogs</h3>
+
+        <div class="card-carousel">
+            <img src="assets/blog1.jpeg" alt="Blog 1">
+            <img src="assets/blog2.jpg" alt="Blog 2">
+            <img src="assets/blog3.jpg" alt="Blog 3">
+            <img src="assets/blog4.jpg" alt="Blog 4">
+        </div>
+
+        <a href="blogs.html">
+            <button class="primary-btn card-btn">View Blogs</button>
+        </a>
+    </div>
+
+    <div class="dashboard-card">
+        <h3 class="card-title">Upcoming Events</h3>
+
+        <div class="card-carousel">
+            <img src="assets/events1.jpg" alt="Event 1">
+            <img src="assets/events2.jpg" alt="Event 2">
+            <img src="assets/events3.jpg" alt="Event 3">
+            <img src="assets/events4.jpg" alt="Event 4">
+            <img src="assets/events5.jpg" alt="Event 5">
+            <img src="assets/events6.jpg" alt="Event 6">
+            <img src="assets/events7.jpg" alt="Event 7">
+        </div>
+
+        <a href="events.html">
+            <button class="primary-btn card-btn">View Events</button>
+        </a>
+    </div>
+
+    <!-- Repeat similar for Events and Blogs -->
+</div>
+
+
+
+        </section>
+
+    </main>
+
+</body>
+</html>

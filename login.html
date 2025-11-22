@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login • PrayogSetu</title>
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/login.css">
+</head>
+<body>
+
+    <!-- ===== BACKGROUND GLOW ===== -->
+    <div class="bg-glow"></div>
+    <div class="bg-glow-2"></div>
+
+    <!-- ===== LOGIN WRAPPER ===== -->
+    <div class="login-container">
+
+        <div class="login-card">
+
+            <!-- Logo & Name -->
+            <a href="#login" class="logo">
+                <div class="logo-icon">
+                    <div class="logo-prism">
+                        <div class="prism-shape"></div>
+                    </div>
+                </div>
+                <span class="logo-text">
+                    <span class="prism">PrayogSetu</span>
+                    <span class="flux"></span>
+                </span>
+            </a>
+
+            <!-- Login Form -->
+            <form id="loginForm">
+                <div class="input-field">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="input-field">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" placeholder="Enter password" required>
+                </div>
+
+                <button type="submit" class="login-btn">Login</button>
+
+                <!-- Signup Button -->
+                <a href="signup.html" class="signup-btn">Sign Up</a>
+            </form>
+
+        </div>
+
+    </div>
+
+    <!-- ===== POPUP DIALOG ===== -->
+    <div class="popup-overlay" id="popupOverlay">
+        <div class="popup" id="popupMessage">
+            <h3 id="popupTitle">Title</h3>
+            <p id="popupText">Message</p>
+            <button onclick="closePopup()">OK</button>
+        </div>
+    </div>
+
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-database-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-firestore-compat.js"></script>
+
+<script src="js/firebase-core.js"></script>
+<script src="js/login.js"></script>
+
+
+</body>
+</html>

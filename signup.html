@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup • PrayogSetu</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/signup.css">
+</head>
+<body>
+
+    <!-- ===== MAIN CONTENT WRAPPER ===== -->
+    <div class="main-content">
+        <!-- ===== BACKGROUND GLOW ===== -->
+        <div class="bg-glow"></div>
+        <div class="bg-glow-2"></div>
+
+        <!-- ===== SIGNUP WRAPPER ===== -->
+        <div class="signup-container">
+
+            <div class="signup-card">
+
+                <!-- Logo & Name -->
+                <a href="#signup" class="logo">
+                    <div class="logo-icon">
+                        <div class="logo-prism">
+                            <div class="prism-shape"></div>
+                        </div>
+                    </div>
+                    <span class="logo-text">
+                        <span class="prism">PrayogSetu</span>
+                        <span class="flux"></span>
+                    </span>
+                </a>
+
+                <!-- Signup Form -->
+                <form id="signupForm">
+                    <div class="input-field">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" placeholder="Enter your full name" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="roll">Roll Number</label>
+                        <input type="text" id="roll" placeholder="Enter your roll number" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="Enter your official email" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="password">Password</label>
+                        <input type="password" id="password" placeholder="Enter password" required>
+                    </div>
+
+                    <div class="input-field">
+                        <label for="confirmPassword">Confirm Password</label>
+                        <input type="password" id="confirmPassword" placeholder="Confirm password" required>
+                    </div>
+
+                    <button type="submit" class="signup-btn">Sign Up</button>
+
+                    <p class="login-text">
+                        Already have an account? <a href="login.html">Login</a>
+                    </p>
+                </form>
+
+            </div>
+
+        </div>
+    </div>
+
+    <!-- ===== POPUP DIALOG ===== -->
+    <div class="popup-overlay" id="popup" style="display:none;">
+        <div class="popup-content">
+            <h2>Success!</h2>
+            <p>Please verify your account via the link sent to your email.<br>(Check your spam folder too!)</p>
+            <button id="popup-ok-btn">OK</button>
+        </div>
+    </div>
+
+    <!-- Firebase JS -->
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.23.0/firebase-auth-compat.js"></script>
+
+    <!-- External JS -->
+    <script src="js/signup.js"></script>
+
+</body>
+</html>
