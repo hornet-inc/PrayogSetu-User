@@ -1,0 +1,278 @@
+/* =========================================================
+   COMPONENTS PAGE – STYLING
+   Matches user.css glass UI + sidebar layout
+   ========================================================= */
+
+/* ---------- GENERAL LAYOUT ---------- */
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: #0e0e0e;
+    color: #fff;
+    display: flex;
+}
+
+/* ---------- MAIN CONTENT ---------- */
+.main-content {
+    margin-left: 260px;
+    padding: 40px;
+    width: calc(100% - 260px);
+}
+
+.section-title {
+    font-size: 32px;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.section-subtitle {
+    color: #bbb;
+    margin-bottom: 30px;
+}
+
+
+/* ---------- SEARCH BOX ---------- */
+.search-box {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 16px;
+    border-radius: 14px;
+    border: none;
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff;
+    backdrop-filter: blur(10px);
+    margin-bottom: 30px;
+    transition: 0.3s ease;
+}
+
+.search-box:focus {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 10px rgba(0, 255, 225, 0.4);
+}
+
+
+/* ---------- COMPONENT CARDS GRID ---------- */
+.components-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 26px;
+}
+
+
+/* ---------- CARD DESIGN ---------- */
+.component-card {
+    background: rgba(255, 255, 255, 0.12);
+    padding: 22px;
+    border-radius: 18px;
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    cursor: pointer;
+}
+
+.component-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 12px 26px rgba(0, 255, 200, 0.35);
+}
+
+.component-name {
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.component-category {
+    font-size: 14px;
+    color: #d6d6d6;
+    margin-bottom: 14px;
+}
+
+.component-stock {
+    font-size: 15px;
+    margin-bottom: 14px;
+}
+
+.stock-green {
+    color: #00ffae;
+}
+
+.stock-red {
+    color: #ff6363;
+}
+
+.component-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.request-btn {
+    padding: 10px 16px;
+    background: #00ffe0;
+    color: #000;
+    border-radius: 10px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: 0.25s ease;
+}
+
+.request-btn:hover {
+    background: #00c9ba;
+}
+
+
+/* ---------- RESPONSIVE ---------- */
+@media (max-width: 900px) {
+    .main-content {
+        margin-left: 0;
+        width: 100%;
+        padding: 25px;
+    }
+
+    .section-title {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+    .components-list {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* ===== USER INFO GLASS CARD ===== */
+.user-info-card {
+    margin-top: 20px;
+    padding: 15px;
+    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: #fff;
+    text-align: left;
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.user-info-card p {
+    font-size: 0.9rem;
+    color: #ccc;
+}
+
+.user-info-card h3 {
+    font-size: 1.2rem;
+    color: #00ffe0;
+    margin: 5px 0 10px;
+}
+
+.user-info-card .logout-btn {
+    margin-top: 10px;
+    width: 100%;
+}
+
+/* ===== COMPONENTS TABLE ===== */
+.components-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.components-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 800px; /* ensures horizontal scroll if screen is small */
+}
+
+.components-table thead {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.components-table thead th {
+    padding: 12px 15px;
+    text-align: left;
+    color: #00ffe0;
+    font-weight: 600;
+    font-size: 0.95rem;
+}
+
+.components-table tbody tr {
+    transition: 0.3s;
+}
+
+.components-table tbody tr:hover {
+    background: rgba(0, 255, 224, 0.05);
+}
+
+.components-table tbody td {
+    padding: 10px 15px;
+    color: #ccc;
+    font-size: 0.9rem;
+    vertical-align: middle;
+}
+
+.components-table tbody td span.request-type {
+    display: inline-block;
+    padding: 4px 8px;
+    border-radius: 8px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+}
+
+.request-special {
+    background: linear-gradient(45deg, #ff3c3c, #ff8a3c);
+    color: #fff;
+}
+
+.request-normal {
+    background: linear-gradient(45deg, #3cafff, #00ffe0);
+    color: #fff;
+}
+
+/* Responsive for small screens */
+@media (max-width: 768px) {
+    .components-table {
+        min-width: 600px;
+    }
+    .components-table thead th,
+    .components-table tbody td {
+        padding: 8px 10px;
+        font-size: 0.85rem;
+    }
+}
+
+/* ===== Refresh Button ===== */
+#refreshBtn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    background: linear-gradient(135deg, #00d1ff, #0077ff);
+    color: #fff;
+    box-shadow: 0 6px 20px rgba(0, 153, 255, 0.35);
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+#refreshBtn:hover {
+    transform: translateY(-3px);
+    filter: brightness(1.12);
+}
+
+/* Optional: smaller on mobile */
+@media (max-width: 768px) {
+    #refreshBtn {
+        width: 100%;
+        text-align: center;
+    }
+}

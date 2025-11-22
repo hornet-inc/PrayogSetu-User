@@ -1,0 +1,259 @@
+/* ===========================
+   Blogs PAGE CSS
+=========================== */
+
+/* ===== GLOBAL STYLES ===== */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #0f0f0f;
+    color: #fff;
+    display: flex;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* ===== SIDEBAR ===== */
+.sidebar {
+    width: 250px;
+    background-color: rgba(15, 15, 15, 0.95);
+    backdrop-filter: blur(15px);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-right: 1px solid rgba(255,255,255,0.1);
+    z-index: 100;
+}
+
+.sidebar-logo {
+    display: flex;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.sidebar-logo img {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+}
+
+.sidebar-logo h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #00ffe0;
+}
+
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    color: #ccc;
+    font-weight: 500;
+    transition: 0.3s;
+    cursor: pointer;
+}
+
+.nav-item .icon {
+    margin-right: 10px;
+    font-size: 1.2rem;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: linear-gradient(45deg, #ff3c3c, #3cafff);
+    color: #fff;
+}
+
+/* ===== USER INFO CARD ===== */
+.user-info-card {
+    margin-top: auto;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(15px);
+    padding: 15px;
+    border-radius: 15px;
+}
+
+.user-info-card .logged-in-text {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-bottom: 5px;
+}
+
+.user-info-card h3 {
+    font-size: 1.2rem;
+    color: #00ffe0;
+    margin-bottom: 10px;
+}
+
+.logout-btn {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 12px;
+    background: linear-gradient(45deg, #ff3c3c, #3cafff);
+    color: #fff;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.logout-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-2px);
+}
+
+
+/* ===== MAIN CONTENT ===== */
+.main-content {
+    margin-left: 250px;
+    padding: 40px;
+    flex: 1;
+    min-height: 100vh;
+}
+
+/* ===== SECTIONS ===== */
+.section {
+    display: none;
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.active-section {
+    display: block;
+}
+
+.section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: #00ffe0;
+}
+
+.section-subtitle {
+    font-size: 1rem;
+    color: #aaa;
+    margin-bottom: 30px;
+}
+
+/* ===== CLUBS GRID ===== */
+.clubs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr));
+    gap: 20px;
+}
+
+/* ===== CLUB CARD ===== */
+.club-card {
+    background: rgba(20, 20, 20, 0.85);
+    backdrop-filter: blur(10px);
+    width: 100%;   /* full width of grid cell */
+    height: 650px;  /* rectangle height */
+    padding: 20px;
+    border-radius: 12px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: 0.3s;
+    justify-content: flex-start;
+}
+
+.club-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0 25px rgba(255,60,60,0.5);
+}
+
+.club-title {
+    color: #ff3c3c;
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.club-image {
+    width: 300px;       /* make it bigger */
+    height: 300px;      /* same as width to make perfect circle */
+    border-radius: 50%; /* this makes it circular */
+    object-fit: cover;  /* crop the image nicely */
+    margin-bottom: 15px;
+    background: #161616; /* fallback color */
+}
+
+
+.club-desc {
+    color: #ccc;
+    font-size: 1rem;
+    text-align: center;
+}
+
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 1024px) {
+    .sidebar {
+        width: 200px;
+    }
+
+    .main-content {
+        margin-left: 200px;
+        padding: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        position: relative;
+        width: 100%;
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 10px 20px;
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .sidebar-logo {
+        margin-bottom: 0;
+    }
+
+    .sidebar-nav {
+        flex-direction: row;
+        gap: 10px;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+    }
+
+    .main-content {
+        margin-left: 0;
+        padding: 20px;
+    }
+
+    .clubs-list {
+        justify-content: center;
+    }
+}
